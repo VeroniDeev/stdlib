@@ -13,7 +13,9 @@ int64_t create(const void* path, size_t path_len, const void* filename, size_t f
 int64_t create_n(const char* path, const char* filename);
 // COMMON
 /// puts a char in stdin
-void sputc(char c);
+static inline void sputc(char c) {
+	write(1, &c, 1);
+}
 int printf(const char* format, ...);
 
 char getchar();
