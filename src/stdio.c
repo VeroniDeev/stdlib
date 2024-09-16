@@ -29,12 +29,19 @@ int printf(const char *format, ...) {
   va_start(arg, format);
 
   for (current = format; *current != '\0'; current++) {
+    const char *start = current;
+    int len = 0;
+
     while (*current != '%') {
-      sputc(*current);
       current++;
       if (*current == '\0')
-        return 0;
+        break;
+      len++;
     }
+
+    write(1, start, len);
+    if (*current == '\0')
+      return 0;
 
     current++;
     switch (*current) {
