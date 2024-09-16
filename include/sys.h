@@ -16,3 +16,5 @@ static inline int64_t syscall(uint64_t num, uint64_t arg0, uint64_t arg1, uint64
     );
     return result;
 }
+
+void pexit();
