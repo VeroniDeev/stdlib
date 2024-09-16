@@ -1,14 +1,27 @@
 #include <stdint.h>
 #include <stddef.h>
+#include "sys.h"
 // FS
-int64_t open(const void* path_ptr, size_t len);
-int64_t close(uint32_t fd);
+static inline int64_t open(const void *path_ptr, size_t len) {
+  return syscall(2, (uint64_t)path_ptr, len, 0, 0);
+}
+
+static inline int64_t close(uint32_t fd) { return syscall(5, fd, 0, 0, 0); }
+
 int64_t open_n(const char* path);
 
-int64_t write(uint32_t fd, const void* ptr, size_t len);
-int64_t read(uint32_t fd, void* ptr, size_t len);
+static inline int64_t write(uint32_t fd, const void *ptr, size_t len) {
+  return syscall(3, fd, (uint64_t)ptr, len, 0);
+}
 
-int64_t create(const void* path, size_t path_len, const void* filename, size_t filename_len);
+static inline int64_t read(uint32_t fd, void *ptr, size_t len) {
+  return syscall(4, fd, (uint64_t)ptr, len, 0);
+}
+
+static inline int64_t create(const void *path, size_t path_len, const void *filename,
+               size_t filename_len) {
+  return syscall(6, (uint64_t)path, path_len, (uint64_t)filename, filename_len);
+}
 /// wrapper around create that takes a null terminated path and a null terminated name
 int64_t create_n(const char* path, const char* filename);
 // COMMON
