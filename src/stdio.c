@@ -32,10 +32,8 @@ int printf(const char *format, ...) {
     const char *start = current;
     int len = 0;
 
-    while (*current != '%') {
+    while (*current != '%' && *current != '\0') {
       current++;
-      if (*current == '\0')
-        break;
       len++;
     }
 
