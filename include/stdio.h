@@ -18,9 +18,8 @@ static inline int64_t read(uint32_t fd, void *ptr, size_t len) {
   return syscall(4, fd, (uint64_t)ptr, len, 0);
 }
 
-static inline int64_t create(const void *path, size_t path_len, const void *filename,
-               size_t filename_len) {
-  return syscall(6, (uint64_t)path, path_len, (uint64_t)filename, filename_len);
+static inline int64_t create(const void *path, size_t path_len) {
+  return syscall(6, (uint64_t)path, path_len, 0, 0);
 }
 /// wrapper around create that takes a null terminated path and a null terminated name
 int64_t create_n(const char* path, const char* filename);
