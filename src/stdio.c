@@ -12,13 +12,12 @@ int64_t open_n(const char *path) {
 
 /// wrapper around create that takes a null terminated path and a null
 /// terminated name
-int64_t create_n(const char *path, const char *filename) {
-  size_t path_len, filename_len;
+int64_t create_n(const char *path) {
+  size_t path_len;
 
   path_len = strlen(path);
-  filename_len = strlen(filename);
 
-  return create(path, path_len, filename, filename_len);
+  return create(path, path_len);
 }
 
 int printf(const char *format, ...) {

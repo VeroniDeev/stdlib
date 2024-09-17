@@ -22,7 +22,7 @@ static inline int64_t create(const void *path, size_t path_len) {
   return syscall(6, (uint64_t)path, path_len, 0, 0);
 }
 /// wrapper around create that takes a null terminated path and a null terminated name
-int64_t create_n(const char* path, const char* filename);
+int64_t create_n(const char* path);
 // COMMON
 /// puts a char in stdin
 static inline void sputc(char c) {
