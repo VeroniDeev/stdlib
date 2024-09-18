@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #pragma once
+__attribute__((always_inline))
 static inline int64_t syscall(uint64_t num, uint64_t arg0, uint64_t arg1, uint64_t arg3, uint64_t arg4) {
     int64_t result;
     __asm__ volatile (
