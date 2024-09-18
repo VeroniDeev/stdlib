@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Iinclude -Wall -Wextra -static -ffreestanding -nostdlib -fno-stack-protector
+CFLAGS = -Iinclude -O1 -Wall -Wextra -static -ffreestanding -nostdlib -fno-stack-protector
 
 LIBRARY = libstd.a
 

@@ -3,7 +3,7 @@
 #pragma once
 static inline int64_t syscall(uint64_t num, uint64_t arg0, uint64_t arg1, uint64_t arg3, uint64_t arg4) {
     int64_t result;
-    asm volatile (
+    __asm__ volatile (
         "mov %1, %%rax\n" 
         "mov %2, %%rdi\n"  
         "mov %3, %%rsi\n"  
@@ -19,3 +19,5 @@ static inline int64_t syscall(uint64_t num, uint64_t arg0, uint64_t arg1, uint64
 }
 
 void pexit();
+void yield();
+void wait(int64_t pid);
